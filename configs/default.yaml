@@ -1,0 +1,24 @@
+name: videomae_señales_prueba
+seed: 1024
+eval: False # train or eval mode
+model_path: '/workspace/TFG/exp/señales_timesformer/20240508_170212/best_epoch_14.pt' #/workspace/TFG/exp/señales/20240507_092955/best_epoch_0.pt # To load a model (only works for eval) /workspace/TFG/exp/señales/20240507_092955/best_epoch_0.pt  
+data:
+  anno_path: '/workspace/TFG/anno/'
+  video_path: '/datasets/PainDatasets/BioVid/PartA/' # assume folders video_processed-model
+  signals: '/workspace/diccionario01.pickle' # TODO: path al pickle
+  workers: 4
+  batch_size: 2
+  task: 'complete' # binary or complete (2 or 5 classes)
+model:
+  video_transformer: videomae # vivit or videomae or timesformer
+  freeze_video: False
+  hidden_dim: 512 #512 12
+solver:
+  epochs: 20
+  start_epoch: 0
+  lr_warmup_step: 5
+  lr: 0.0000005 #0.0000005 # 0.00005 0.0005
+  eval_freq: 2
+logging:
+  freq: 10
+  
